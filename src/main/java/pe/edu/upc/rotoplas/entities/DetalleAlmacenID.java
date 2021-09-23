@@ -1,8 +1,16 @@
 package pe.edu.upc.rotoplas.entities;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class DetalleAlmacenID {
+
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@Data
+public class DetalleAlmacenID implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Integer producto;

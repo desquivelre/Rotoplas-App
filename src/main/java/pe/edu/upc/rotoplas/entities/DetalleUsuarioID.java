@@ -1,8 +1,17 @@
 package pe.edu.upc.rotoplas.entities;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class DetalleUsuarioID {
+import javax.persistence.Embeddable;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
+@NoArgsConstructor
+@Data
+public class DetalleUsuarioID implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Integer usuario;

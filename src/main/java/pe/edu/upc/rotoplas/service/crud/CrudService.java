@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
-import pe.edu.upc.rotoplas.entities.Cartera;
 import pe.edu.upc.rotoplas.entities.Usuario;
 
 public interface CrudService<T, ID> {

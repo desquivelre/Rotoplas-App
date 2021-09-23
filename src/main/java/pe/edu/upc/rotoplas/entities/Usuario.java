@@ -51,9 +51,6 @@ public class Usuario {
     
     
 
-    @OneToMany(mappedBy = "Usuario", fetch = FetchType.LAZY)
-    private List<Cartera> carteras;
-
 
     @OneToMany(mappedBy = "usuario",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
     private List<Authority>authorities;
@@ -67,7 +64,7 @@ public class Usuario {
 
 	public Usuario(@NotNull @Range(min = 10000000, max = 99999999) Integer dNI, @NotEmpty String nUsuario,
 			@NotEmpty String contrasena, @NotEmpty String tDIreccionUsuario, @NotEmpty String numCelular,
-			List<DetalleUsuario> detallesUsuario, List<Cartera> carteras, List<Authority> authorities, boolean enable) {
+			List<DetalleUsuario> detallesUsuario,List<Authority> authorities, boolean enable) {
 		super();
 		DNI = dNI;
 		NUsuario = nUsuario;
@@ -75,7 +72,7 @@ public class Usuario {
 		TDIreccionUsuario = tDIreccionUsuario;
 		NumCelular = numCelular;
 		DetallesUsuario = detallesUsuario;
-		this.carteras = carteras;
+	
 		this.authorities = authorities;
 		this.enable = enable;
 	}
@@ -128,13 +125,8 @@ public class Usuario {
 		DetallesUsuario = detallesUsuario;
 	}
 
-	public List<Cartera> getCarteras() {
-		return carteras;
-	}
 
-	public void setCarteras(List<Cartera> carteras) {
-		this.carteras = carteras;
-	}
+
 
 	public List<Authority> getAuthorities() {
 		return authorities;

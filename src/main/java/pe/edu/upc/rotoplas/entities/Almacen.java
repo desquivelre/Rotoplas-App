@@ -30,8 +30,7 @@ public class Almacen {
     @JoinColumn(name = "CDistrito", nullable = false)
     private Distrito distrito;
     
-    @OneToMany(mappedBy = "almacen", fetch = FetchType.LAZY)
-    private List<DetalleAlmacen> DetallesAlmacen;
+ 
     
     @OneToMany(mappedBy = "almacen", fetch = FetchType.LAZY)
     private List<DetalleUsuario> DetallesUsuario;
@@ -40,13 +39,13 @@ public class Almacen {
 		super();
 	}
 
-	public Almacen(Integer cAlmacen, String tDireccionAlmacen, Distrito distrito, List<DetalleAlmacen> detallesAlmacen,
+	public Almacen(Integer cAlmacen, String tDireccionAlmacen, Distrito distrito, 
 			List<DetalleUsuario> detallesUsuario) {
 		super();
 		CAlmacen = cAlmacen;
 		TDireccionAlmacen = tDireccionAlmacen;
 		this.distrito = distrito;
-		DetallesAlmacen = detallesAlmacen;
+		
 		DetallesUsuario = detallesUsuario;
 	}
 
@@ -74,13 +73,7 @@ public class Almacen {
 		this.distrito = distrito;
 	}
 
-	public List<DetalleAlmacen> getDetallesAlmacen() {
-		return DetallesAlmacen;
-	}
 
-	public void setDetallesAlmacen(List<DetalleAlmacen> detallesAlmacen) {
-		DetallesAlmacen = detallesAlmacen;
-	}
 
 	public List<DetalleUsuario> getDetallesUsuario() {
 		return DetallesUsuario;

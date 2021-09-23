@@ -21,38 +21,47 @@ import lombok.NoArgsConstructor;
 public class DetalleUsuario  {
 	
 	@Id
-	
-	private DetalleUsuarioID usuario;
+	@ManyToOne()
+	@JoinColumn(name = "DNI", nullable = false)
+	private Usuario usuario;
 	
 	@Id
-	private DetalleAlmacenID almacen;
+	@ManyToOne()
+	@JoinColumn(name = "CAlmacen", nullable = false)
+	private Almacen almacen;
 
 	public DetalleUsuario() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 
-	public DetalleUsuario(DetalleUsuarioID usuario, DetalleAlmacenID almacen) {
+	public DetalleUsuario(Usuario usuario, Almacen almacen) {
 		super();
 		this.usuario = usuario;
 		this.almacen = almacen;
 	}
 
-	public DetalleUsuarioID getUsuario() {
+
+	public Usuario getUsuario() {
 		return usuario;
 	}
 
-	public void setUsuario(DetalleUsuarioID usuario) {
+
+	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
 
-	public DetalleAlmacenID getAlmacen() {
+
+	public Almacen getAlmacen() {
 		return almacen;
 	}
 
-	public void setAlmacen(DetalleAlmacenID almacen) {
+
+	public void setAlmacen(Almacen almacen) {
 		this.almacen = almacen;
 	}
+
 	
 	
 }

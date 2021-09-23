@@ -8,7 +8,7 @@ import pe.edu.upc.rotoplas.entities.Usuario;
 public interface RegisterService  extends CrudService<Usuario, Integer> {
 
 	
-	public Usuario findByUsername(String username);
+	public Usuario findByNUsuario(String username);
 	public Usuario registrar(Usuario u);
 
 }

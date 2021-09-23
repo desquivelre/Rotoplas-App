@@ -20,7 +20,7 @@ public class MyUserDetailsService implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		try {
-			Optional<Usuario> optional = this.registerRepository.findByUsername(username);
+			Optional<Usuario> optional = this.registerRepository.findByNUsuario(username);
 			if (optional.isPresent()) {
 				MyUserDetails myUserDetails = new MyUserDetails( optional.get() );
 				return myUserDetails;

@@ -34,7 +34,7 @@ public class ListaCarteraController {
 			Optional<Usuario> usuario = registerService.findById(id);
 			if(usuario.isPresent()) {
 				
-				List<Cartera> carteras  = carteraService.filterCarterasByIdUsuario(usuario.get().getId());
+				List<Cartera> carteras  = carteraService.filterCarterasByIdUsuario(usuario.get().getDNI());
 				model.addAttribute("usuario", usuario.get());
 				model.addAttribute("carteras", carteras);
 

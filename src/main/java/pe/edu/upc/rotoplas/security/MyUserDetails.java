@@ -35,13 +35,13 @@ public class MyUserDetails implements UserDetails {
 	@Override
 	public String getPassword() {
 		// TODO Auto-generated method stub
-		return this.usuario.getPassword();
+		return this.usuario.getContrasena();
 	}
 
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return this.usuario.getUsername();
+		return this.usuario.getNUsuario();
 	}
 
 	@Override
@@ -71,7 +71,7 @@ public class MyUserDetails implements UserDetails {
      
 	
 	public Integer getID() {
-		return this.usuario.getId();
+		return this.usuario.getDNI();
 	}
 	
 	

@@ -12,7 +12,7 @@ import pe.edu.upc.rotoplas.entities.Usuario;
 @Repository
 public interface RegisterRepository extends JpaRepository<Usuario, Integer> {
 	
-	Optional<Usuario> findByUsername(String username);
+	Optional<Usuario> findByNUsuario(String username);
 
 	
 

@@ -28,14 +28,14 @@ public class RegisterServiceImpl implements RegisterService {
 	}
 
 	@Override
-	public Usuario findByUsername(String username) {
+	public Usuario findByNUsuario(String username) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Usuario registrar(Usuario u) {
-		u.setPassword(passwordEncoder.encode(u.getPassword()));
+		u.setContrasena(passwordEncoder.encode(u.getContrasena()));
 		return registerRepository.save(u);
 	}
 

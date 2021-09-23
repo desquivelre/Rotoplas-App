@@ -106,7 +106,7 @@ public class CrearCarteraController {
 		
 		System.out.println(cartera.getCCartera());
 		
-		System.out.println(cartera.getUsuario().getId());
+		System.out.println(cartera.getUsuario().getDNI());
 		
 		System.out.println(cartera.getTipoCalendario().getTipoCalendario());
 		System.out.println(cartera.getTasa().getNTasa());
@@ -118,7 +118,7 @@ public class CrearCarteraController {
 		System.out.println(cartera.getDDescuento());
 		
 		
-		return "redirect:/crearcartera/datosCartera/" + cartera.getUsuario().getId() + "/" + cartera.getCCartera();	
+		return "redirect:/crearcartera/datosCartera/" + cartera.getUsuario().getDNI() + "/" + cartera.getCCartera();	
 	}
 	
 	
@@ -187,7 +187,7 @@ public class CrearCarteraController {
 		System.out.println(gasto_inicial.getMGasto());
 		System.out.println(gasto_inicial.getTipoGasto().getNTipoGasto());
 		
-		return "redirect:/crearcartera/datosCartera/" + gasto_inicial.getCartera().getUsuario().getId() + "/" + gasto_inicial.getCartera().getCCartera();
+		return "redirect:/crearcartera/datosCartera/" + gasto_inicial.getCartera().getUsuario().getDNI() + "/" + gasto_inicial.getCartera().getCCartera();
 	}
 	
 	//Post y Get mapping para crear gastos finales
@@ -238,7 +238,7 @@ public class CrearCarteraController {
 		System.out.println(gasto_final.getMGasto());
 		System.out.println(gasto_final.getTipoGasto().getNTipoGasto());
 		
-		return "redirect:/crearcartera/datosCartera/" + gasto_final.getCartera().getUsuario().getId() + "/" + gasto_final.getCartera().getCCartera();
+		return "redirect:/crearcartera/datosCartera/" + gasto_final.getCartera().getUsuario().getDNI() + "/" + gasto_final.getCartera().getCCartera();
 	}
 	
 }

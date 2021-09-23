@@ -26,16 +26,30 @@ public class Usuario {
     @Id 
     @NotNull
     @Range(min=10000000,max=99999999)
-    @Column(name = "id", length = 8, nullable = false)
-    private Integer id;
+    @Column(name = "DNI", length = 8, nullable = false)
+    private Integer DNI;
 
     @NotEmpty
-    @Column(name = "Username", length = 120)
-    private String username;
+    @Column(name = "NUsuario", length = 30, nullable = false)
+    private String NUsuario;
 
     @NotEmpty
-    @Column(name = "Password", length = 120)
-    private String password;
+    @Column(name = "Contrasena", length = 16, nullable = false)
+    private String Contrasena;
+    
+    @NotEmpty
+    @Column(name = "TDireccionUsario", length = 50, nullable = false)
+    private String TDIreccionUsuario;
+    
+    @NotEmpty
+    @Column(name = "NumCelular", length = 9, nullable = false)
+    private String NumCelular;
+    
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
+    private List<DetalleUsuario> DetallesUsuario;
+    
+    
+    
 
     @OneToMany(mappedBy = "Usuario", fetch = FetchType.LAZY)
     private List<Cartera> carteras;
@@ -46,72 +60,99 @@ public class Usuario {
 
     private boolean enable;
 
-    public Usuario() {
-        super();
-        // TODO Auto-generated constructor stub
-        this.enable=true;
-        this.authorities= new ArrayList<>();
-    }
+	public Usuario() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-    public Usuario(Integer cUsuario, String username, String password, List<Cartera> carteras,
-            List<Authority> authorities, boolean enable) {
-        super();
-        this.id = cUsuario;
-        this.username = username;
-        this.password = password;
-        this.carteras = carteras;
-        this.enable=true;
-        this.authorities= new ArrayList<>();
-    }
+	public Usuario(@NotNull @Range(min = 10000000, max = 99999999) Integer dNI, @NotEmpty String nUsuario,
+			@NotEmpty String contrasena, @NotEmpty String tDIreccionUsuario, @NotEmpty String numCelular,
+			List<DetalleUsuario> detallesUsuario, List<Cartera> carteras, List<Authority> authorities, boolean enable) {
+		super();
+		DNI = dNI;
+		NUsuario = nUsuario;
+		Contrasena = contrasena;
+		TDIreccionUsuario = tDIreccionUsuario;
+		NumCelular = numCelular;
+		DetallesUsuario = detallesUsuario;
+		this.carteras = carteras;
+		this.authorities = authorities;
+		this.enable = enable;
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public Integer getDNI() {
+		return DNI;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setDNI(Integer dNI) {
+		DNI = dNI;
+	}
 
-    public String getUsername() {
-        return username;
-    }
+	public String getNUsuario() {
+		return NUsuario;
+	}
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+	public void setNUsuario(String nUsuario) {
+		NUsuario = nUsuario;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public String getContrasena() {
+		return Contrasena;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public void setContrasena(String contrasena) {
+		Contrasena = contrasena;
+	}
 
-    public List<Cartera> getCarteras() {
-        return carteras;
-    }
+	public String getTDIreccionUsuario() {
+		return TDIreccionUsuario;
+	}
 
-    public void setCarteras(List<Cartera> carteras) {
-        this.carteras = carteras;
-    }
+	public void setTDIreccionUsuario(String tDIreccionUsuario) {
+		TDIreccionUsuario = tDIreccionUsuario;
+	}
 
-    public List<Authority> getAuthorities() {
-        return authorities;
-    }
+	public String getNumCelular() {
+		return NumCelular;
+	}
 
-    public void setAuthorities(List<Authority> authorities) {
-        this.authorities = authorities;
-    }
+	public void setNumCelular(String numCelular) {
+		NumCelular = numCelular;
+	}
 
-    public boolean isEnable() {
-        return enable;
-    }
+	public List<DetalleUsuario> getDetallesUsuario() {
+		return DetallesUsuario;
+	}
 
-    public void setEnable(boolean enable) {
-        this.enable = enable;
-    }
+	public void setDetallesUsuario(List<DetalleUsuario> detallesUsuario) {
+		DetallesUsuario = detallesUsuario;
+	}
 
+	public List<Cartera> getCarteras() {
+		return carteras;
+	}
+
+	public void setCarteras(List<Cartera> carteras) {
+		this.carteras = carteras;
+	}
+
+	public List<Authority> getAuthorities() {
+		return authorities;
+	}
+
+	public void setAuthorities(List<Authority> authorities) {
+		this.authorities = authorities;
+	}
+
+	public boolean isEnable() {
+		return enable;
+	}
+
+	public void setEnable(boolean enable) {
+		this.enable = enable;
+	}
+
+   
 
 
 }

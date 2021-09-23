@@ -67,19 +67,30 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 		
 		<form th:action="@{/auth/registro}" th:object="${usuario}" , method="post">
 			<h4>Registrese</h4>
-			<small class="form-text text-danger" th:if="${#fields.hasErrors('id')}" th:errors= "*{id}"></small>
+			<small class="form-text text-danger" th:if="${#fields.hasErrors('DNI')}" th:errors= "*{DNI}"></small>
 			
-			<input class="controls"  th:field ="*{id}" type="text" name="id" id="id" placeholder="Ingrese su dni" >
+			<input class="controls"  th:field ="*{DNI}" type="text" name="DNI" id="DNI" placeholder="Ingrese su dni" >
 			
 			
-			<small class="form-text text-danger" th:if="${#fields.hasErrors('username')}" th:errors= "*{username}"></small>
+			<small class="form-text text-danger" th:if="${#fields.hasErrors('NUsuario')}" th:errors= "*{NUsuario}"></small>
 				
-			<input class="controls" th:field ="*{username}"  type="text" name="Username" id="Username" placeholder="Ingrese su Usuario">
+			<input class="controls" th:field ="*{NUsuario}"  type="text" name="NUsuario" id="NUsuario" placeholder="Ingrese su Usuario">
 		
 			
-			<small class="form-text text-danger" th:if="${#fields.hasErrors('password')}" th:errors= "*{password}"></small>
+			<small class="form-text text-danger" th:if="${#fields.hasErrors('Contrasena')}" th:errors= "*{Contrasena}"></small>
 				
-			<input class="controls"  th:field ="*{password}" type="password" name="password" id="password" placeholder="Ingrese su Contraseña">
+			<input class="controls"  th:field ="*{Contrasena}" type="Contrasena" name="Contrasena" id="Contrasena" placeholder="Ingrese su Contraseña">
+		
+					
+			<small class="form-text text-danger" th:if="${#fields.hasErrors('TDireccionUsario')}" th:errors= "*{TDireccionUsario}"></small>
+				
+			<input class="controls"  th:field ="*{TDireccionUsario}" type="TDireccionUsario" name="TDireccionUsario" id="TDireccionUsario" placeholder="Ingrese su direccion">
+		
+		
+			<small class="form-text text-danger" th:if="${#fields.hasErrors('NumCelular')}" th:errors= "*{NumCelular}"></small>
+				
+			<input class="controls"  th:field ="*{NumCelular}" type="NumCelular" name="NumCelular" id="NumCelular" placeholder="Ingrese su numero de celular">
+		
 		
 			<p>¿Ya tienes cuenta? <a th:href="@{'/login'}">Inicia Sesión</a></p>
 			

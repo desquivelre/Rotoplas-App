@@ -34,12 +34,12 @@ public class Usuario {
     private String NUsuario;
 
     @NotEmpty
-    @Column(name = "Contrasena", length = 16, nullable = false)
+    @Column(name = "Contrasena", length = 300, nullable = false)
     private String Contrasena;
     
     @NotEmpty
     @Column(name = "TDireccionUsario", length = 50, nullable = false)
-    private String TDIreccionUsuario;
+    private String TDireccionUsario;
     
     @NotEmpty
     @Column(name = "NumCelular", length = 9, nullable = false)
@@ -60,6 +60,8 @@ public class Usuario {
 	public Usuario() {
 		super();
 		// TODO Auto-generated constructor stub
+		this.enable=true;
+        this.authorities= new ArrayList<>();
 	}
 
 	public Usuario(@NotNull @Range(min = 10000000, max = 99999999) Integer dNI, @NotEmpty String nUsuario,
@@ -69,13 +71,18 @@ public class Usuario {
 		DNI = dNI;
 		NUsuario = nUsuario;
 		Contrasena = contrasena;
-		TDIreccionUsuario = tDIreccionUsuario;
+		TDireccionUsario = tDIreccionUsuario;
 		NumCelular = numCelular;
 		DetallesUsuario = detallesUsuario;
 	
 		this.authorities = authorities;
 		this.enable = enable;
 	}
+
+
+
+
+
 
 	public Integer getDNI() {
 		return DNI;
@@ -101,12 +108,14 @@ public class Usuario {
 		Contrasena = contrasena;
 	}
 
-	public String getTDIreccionUsuario() {
-		return TDIreccionUsuario;
+
+
+	public String getTDireccionUsario() {
+		return TDireccionUsario;
 	}
 
-	public void setTDIreccionUsuario(String tDIreccionUsuario) {
-		TDIreccionUsuario = tDIreccionUsuario;
+	public void setTDireccionUsario(String tDireccionUsario) {
+		TDireccionUsario = tDireccionUsario;
 	}
 
 	public String getNumCelular() {
@@ -124,9 +133,6 @@ public class Usuario {
 	public void setDetallesUsuario(List<DetalleUsuario> detallesUsuario) {
 		DetallesUsuario = detallesUsuario;
 	}
-
-
-
 
 	public List<Authority> getAuthorities() {
 		return authorities;

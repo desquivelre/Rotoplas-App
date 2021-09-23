@@ -34,8 +34,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.formLogin()
 			.loginProcessingUrl("/signin")
 			.loginPage("/login").permitAll()
-			.usernameParameter("username")
-			.passwordParameter("password")
+			.usernameParameter("NUsuario")
+			.passwordParameter("Contrasena")
 
 			.and()
 			.logout()

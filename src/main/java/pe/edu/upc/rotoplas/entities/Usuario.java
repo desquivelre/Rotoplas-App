@@ -41,9 +41,10 @@ public class Usuario {
     @Column(name = "TDireccionUsario", length = 50, nullable = false)
     private String TDireccionUsario;
     
-    @NotEmpty
+    @NotNull
+    @Range(min=100000000,max=999999999)
     @Column(name = "NumCelular", length = 9, nullable = false)
-    private String NumCelular;
+    private Integer NumCelular;
     
     @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
     private List<DetalleUsuario> DetallesUsuario;
@@ -65,7 +66,7 @@ public class Usuario {
 	}
 
 	public Usuario(@NotNull @Range(min = 10000000, max = 99999999) Integer dNI, @NotEmpty String nUsuario,
-			@NotEmpty String contrasena, @NotEmpty String tDIreccionUsuario, @NotEmpty String numCelular,
+			@NotEmpty String contrasena, @NotEmpty String tDIreccionUsuario, @NotNull Integer numCelular,
 			List<DetalleUsuario> detallesUsuario,List<Authority> authorities, boolean enable) {
 		super();
 		DNI = dNI;
@@ -118,11 +119,11 @@ public class Usuario {
 		TDireccionUsario = tDireccionUsario;
 	}
 
-	public String getNumCelular() {
+	public Integer getNumCelular() {
 		return NumCelular;
 	}
 
-	public void setNumCelular(String numCelular) {
+	public void setNumCelular(Integer numCelular) {
 		NumCelular = numCelular;
 	}
 

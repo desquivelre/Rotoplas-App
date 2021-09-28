@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Menu de control de inventario</title>
+    <link rel="stylesheet" href="css/menuControlInventarioStyle.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet"/>
+    <script src="https://kit.fontawesome.com/962e5cda46.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+   
+    <div class="Encabezado">
+        <img src="img/rotoplas-logo.png" alt="rotoplas-logo" class="Encabezado__logo">
+        <div class="Encabezado__Detalle">
+            <div>Área de Control de Inventarios</div>
+            <div>Almacén Perú</div>
+            <div>¿Qué desea realizar?</div>
+        </div>
+        <a href="index.html"><button class="button-base eliminar">Cerrar sesión</button></a>
+    </div>
+    <div class="main">
+        <div class="main__contenido">
+            <div class="main__operaciones">
+                <div class="main__titulo">Operaciones</div>
+                <div class="main__cards">
+                    <div class="main__card">
+                        <a href="registrarProducto.html"><i class="fas fa-plus-square fa-10x"></i></a>
+                        <div>Registrar nuevo producto</div>
+                    </div>
+                    <div class="main__card">
+                        <a href="transferirStockOtroAlmacen.html"><i class="fas fa-people-arrows fa-10x"></i></a>
+                        <div>Transferir stock a otro almacén</div>
+                    </div>
+                    <div class="main__card">
+                        <a href="modificarStock.html"><i class="fas fa-edit fa-10x"></i></a>
+                        <div>Modificar stock</div>
+                    </div>
+                </div>
+            </div>
+            <div class="main__consultas">
+                <div class="main__titulo">Consultas</div>
+                <div class="main__cards">
+                    <div class="main__card">
+                        <a href="listarProductos.html"><i class="far fa-list-alt fa-10x"></i></i></a>
+                        <div>Listar productos</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <a href="seleccionAlmacen.html"><button class="button-base">Atrás</button></a>
+        </div>
+    </div>
+
+  
+</body>
+
+</html>

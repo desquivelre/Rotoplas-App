@@ -1,0 +1,112 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+
+    font-family: 'Rubik', sans-serif;
+    
+
+
+}
+
+body{
+    height: 100vh;
+
+    background-size: 100%;
+    background-image: url("https://image.freepik.com/foto-gratis/conservacion-ambiental-jardin-ninos_1150-15276.jpg");
+    background-repeat: no-repeat;
+   
+    color: black;
+    display: flex;
+    flex-direction: column;
+    
+    padding: 20px;
+}
+
+.Encabezado{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.Encabezado div{
+    padding-right: 80px;
+    color: grey;
+}
+
+.logo{
+    width: 250px;
+}
+
+.button-base{
+    border: none;
+    background-color: skyblue;
+    font-size: 18px;
+    width:  150px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.button-base a{
+    color: whitesmoke;
+}
+
+.button-base:hover{
+    background-color: mediumaquamarine;
+    color: white;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    align-items: center;
+
+    background-color: whitesmoke;
+    margin: auto;
+    padding: 70px;
+    border-radius: 50px;
+    box-shadow: 2px 10px 10px 1px rgba(0, 0, 0, 0.5);
+    
+}
+
+.bienvenida{
+    font-size: 60px;
+    margin: auto 0;
+}
+
+.titulo{
+    font-size: 40px;
+    font-weight: 600;
+    color: black;
+    margin: 0 0;
+}
+
+.texto{
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.box{
+    margin: auto 0;
+}
+
+.box select{
+    background-color: grey;
+    color: whitesmoke;
+    outline: none;
+    padding:20px;
+    width: 260px;
+    font-size: 20px;
+    border: none;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, .5);
+}
+
+
+
+.footer{
+    margin: auto 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    
+}

@@ -67,27 +67,26 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 		
 		<form th:action="@{/auth/registro}" th:object="${usuario}" , method="post">
 			<h4>Registrese</h4>
-			<small class="form-text text-danger" th:if="${#fields.hasErrors('DNI')}" th:errors= "*{DNI}"></small>
-			
+				<div class="alert alert-danger" th:if="${#fields.hasErrors('DNI')}" th:errors= "*{DNI}">...</div>	
 			<input class="controls"  th:field ="*{DNI}" type="text" name="DNI" id="DNI" placeholder="Ingrese su dni" >
-			
-			
-			<small class="form-text text-danger" th:if="${#fields.hasErrors('NUsuario')}" th:errors= "*{NUsuario}"></small>
-				
+		
+					<div class="alert alert-danger" th:if="${#fields.hasErrors('NUsuario')}" th:errors= "*{NUsuario}">...</div>	
+	
+	
 			<input class="controls" th:field ="*{NUsuario}"  type="text" name="NUsuario" id="NUsuario" placeholder="Ingrese su Usuario">
 		
 			
-			<small class="form-text text-danger" th:if="${#fields.hasErrors('Contrasena')}" th:errors= "*{Contrasena}"></small>
+			<div class="alert alert-danger" th:if="${#fields.hasErrors('Contrasena')}" th:errors= "*{Contrasena}"></div>
 				
 			<input class="controls"  th:field ="*{Contrasena}" type="Contrasena" name="Contrasena" id="Contrasena" placeholder="Ingrese su Contraseña">
 		
 					
-			<small class="form-text text-danger" th:if="${#fields.hasErrors('TDireccionUsario')}" th:errors= "*{TDireccionUsario}"></small>
+		<div class="alert alert-danger" th:if="${#fields.hasErrors('TDireccionUsario')}" th:errors= "*{TDireccionUsario}"></div>
 				
 			<input class="controls"  th:field ="*{TDireccionUsario}" type="TDireccionUsario" name="TDireccionUsario" id="TDireccionUsario" placeholder="Ingrese su direccion">
 		
 		
-			<small class="form-text text-danger" th:if="${#fields.hasErrors('NumCelular')}" th:errors= "*{NumCelular}"></small>
+			<div class="alert alert-danger" th:if="${#fields.hasErrors('NumCelular')}" th:errors= "*{NumCelular}"></div>
 				
 			<input class="controls"  th:field ="*{NumCelular}" type="NumCelular" name="NumCelular" id="NumCelular" placeholder="Ingrese su numero de celular">
 		

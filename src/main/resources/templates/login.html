@@ -68,10 +68,12 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 		<div class="content">
 			<h4>Iniciar sesión</h4>
-			<form th:action="@{/signin}" method="post">
+			<form class="form-signin" th:action="@{/logincheck}"  method="post">
 			
-			<input class="controls" type="text" name="NUsuario" id="NUsuario" placeholder="Ingrese su Usuario">
-			<input class="controls" type="password" name="Contrasena" id="Contrasena" placeholder="Ingrese su Contraseña">
+			<div class="alert alert-danger" th:if="${error!=null}" th:text="${error}">...</div>
+		
+			<input class="controls" type="text" name="NUsuario" id="NUsuario" placeholder="Ingrese su Usuario" required autofocus>
+		<input class="controls" type="password" name="Contrasena" id="Contrasena" placeholder="Ingrese su Contraseña" required autofocus>
 
 
 			<p>¿Es tu primera vez? <a th:href="@{/auth/registro}">Registrate aqui</a></p>

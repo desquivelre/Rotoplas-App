@@ -31,16 +31,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()
 			    .antMatchers("/","/auth/**").permitAll()
 			.and()
-			.formLogin()
-			.loginProcessingUrl("/signin")
-			.loginPage("/login").permitAll()
+			.formLogin().loginPage("/login")
+			.loginProcessingUrl("/logincheck")
 			.usernameParameter("NUsuario")
 			.passwordParameter("Contrasena")
+			.defaultSuccessUrl("/Menu")
+			.permitAll()
 
 			.and()
-			.logout()
-			 .logoutRequestMatcher(AntPathRequestMatcher("/signin"))
-             .logoutSuccessUrl("/")	
+			.logout().permitAll()
 			;
 	}
 

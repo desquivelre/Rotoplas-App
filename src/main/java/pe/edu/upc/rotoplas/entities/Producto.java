@@ -32,6 +32,63 @@ public class Producto {
 	
 	@Column(name="Numcapacidadlitros",nullable = false)
 	private Integer numcapacidadlitros;
+
+	public Producto() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Producto(Integer cproducto, Categoria categoria, Color color, String nproducto, Integer numcapacidadlitros) {
+		super();
+		this.cproducto = cproducto;
+		this.categoria = categoria;
+		this.color = color;
+		this.nproducto = nproducto;
+		this.numcapacidadlitros = numcapacidadlitros;
+	}
+
+	public Integer getCproducto() {
+		return cproducto;
+	}
+
+	public void setCproducto(Integer cproducto) {
+		this.cproducto = cproducto;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
+	}
+
+	public String getNproducto() {
+		return nproducto;
+	}
+
+	public void setNproducto(String nproducto) {
+		this.nproducto = nproducto;
+	}
+
+	public Integer getNumcapacidadlitros() {
+		return numcapacidadlitros;
+	}
+
+	public void setNumcapacidadlitros(Integer numcapacidadlitros) {
+		this.numcapacidadlitros = numcapacidadlitros;
+	}
+	
+	
+	
 	
 
 }

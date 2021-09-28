@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pe.edu.upc.rotoplas.entities.Almacen;
 import pe.edu.upc.rotoplas.entities.DetalleAlmacen;
 import pe.edu.upc.rotoplas.entities.Producto;
+import pe.edu.upc.rotoplas.entities.Usuario;
 import pe.edu.upc.rotoplas.service.crud.AlmacenService;
 import pe.edu.upc.rotoplas.service.crud.DetalleAlmacenService;
 import pe.edu.upc.rotoplas.service.crud.ProductoService;
+import pe.edu.upc.rotoplas.service.crud.UsuarioService;
 
 @Controller
 @RequestMapping("/crear")
@@ -32,10 +34,14 @@ public class CrearProductoController {
 	@Autowired
 	private DetalleAlmacenService detalleAlmacenService;
 	
-	@GetMapping("{id_Almacen}")
-	public String Crear_Producto(Model model, @PathVariable Integer id_Almacen) {
+	@Autowired
+	private UsuarioService usuarioService;
+	
+	@GetMapping("{id_Almacen}/{id_usuario}")
+	public String Crear_Producto(Model model, @PathVariable Integer id_Almacen, @PathVariable Integer id_usuario) {
 		try {
 			Optional<Almacen> almacen_encontrado = almacenService.findById(id_Almacen);
+			Optional<Usuario> usuario_encontrado = usuarioService.findById(id_usuario);
 			
 			if(almacen_encontrado.isPresent()) {
 				Producto producto = new Producto();
@@ -47,6 +53,7 @@ public class CrearProductoController {
 				model.addAttribute("nuevo_producto", producto);
 				model.addAttribute("almacen", almacen_encontrado.get());
 				model.addAttribute("nuevo_detalle", detalle);
+				model.addAttribute("usuario", usuario_encontrado);
 			}
 			
 		} catch (Exception e) {

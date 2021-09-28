@@ -31,7 +31,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()
 			    .antMatchers("/","/auth/**").permitAll()
 			.and()
-			.formLogin().loginPage("/login")
+			.formLogin().loginPage("/index")
 			.loginProcessingUrl("/logincheck")
 			.usernameParameter("NUsuario")
 			.passwordParameter("Contrasena")

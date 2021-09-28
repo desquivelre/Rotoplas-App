@@ -22,14 +22,14 @@ public class RegisterController {
 	@GetMapping("/auth/login")
 	public String login(Model model) {
 		model.addAttribute("usuario", new Usuario());
-		return "login";
+		return "index";
 	}
 	
 	
 	@GetMapping("/auth/registro")
 	public String registroForm(Model model) {
 		model.addAttribute("usuario", new Usuario());
-		return "loginvista";
+		return "registrarUsuario";
 	}
 	
 	@PostMapping("/auth/registro")
@@ -38,12 +38,12 @@ public class RegisterController {
 
         System.out.println("Existen errores");
 
-        return "loginvista";
+        return "registrarUsuario";
     }else {
         model.addAttribute("usuario",registerService.registrar(usuario));
         System.out.println("Creado Correctamente");
     }
-    return "redirect:/login";
+    return "redirect:/index";
 }
 
 }

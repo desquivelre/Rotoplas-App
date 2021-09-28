@@ -1,44 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr" xmlns:th="https://www.thymeleaf.org/"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/indexStyle.css">
+    <link rel="stylesheet" href="/css/indexStyle.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
     <title>Sign up</title>
 </head>
 <body>
    <div class="main">
-        <img src="img/rotoplas-logo.png" alt="rotoplas-logo" class="formLogo">
-        <form action="" class="formLogin">
+        <img src="/img/rotoplas-logo.png" alt="rotoplas-logo" class="formLogo">
+        <form th:action="@{/auth/registro}" th:object="${usuario}" , method="post" class="formLogin">
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('DNI')}" th:errors= "*{DNI}">...</div>	
             <div class="formInput">
-                <label for="">DNI: </label><input type="text">
+                 <label for="">DNI: </label><input class="controls"  th:field ="*{DNI}" type="text" name="DNI" id="DNI" placeholder="Ingrese su dni" >
             </div>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('NUsuario')}" th:errors= "*{NUsuario}">...</div>	
             <div class="formInput">
-                <label for="">Usuario: </label><input type="text">
+                <label for="">Usuario: </label><input  class="controls" th:field ="*{NUsuario}"  type="text" name="NUsuario" id="NUsuario" placeholder="Ingrese su Usuario">
             </div>
+            			<div class="alert alert-danger" th:if="${#fields.hasErrors('Contrasena')}" th:errors= "*{Contrasena}"></div>
             <div class="formInput">
-                <label for="">Contraseña: </label><input type="text">
+                <label for="">Contraseña: </label><input class="controls"  th:field ="*{Contrasena}" type="Contrasena" name="Contrasena" id="Contrasena" placeholder="Ingrese su Contraseña">
             </div>
+            		<div class="alert alert-danger" th:if="${#fields.hasErrors('TDireccionUsario')}" th:errors= "*{TDireccionUsario}"></div>
+				
             <div class="formInput">
-                <label for="">Dirección: </label><input type="text">
+                <label for="">Dirección: </label><input class="controls"  th:field ="*{TDireccionUsario}" type="TDireccionUsario" name="TDireccionUsario" id="TDireccionUsario" placeholder="Ingrese su direccion">
             </div>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('NumCelular')}" th:errors= "*{NumCelular}"></div>
+			
             <div class="formInput">
-                <label for="">Número de celular: </label><input type="text">
+                <label for="">Número de celular: </label><input class="controls"  th:field ="*{NumCelular}" type="NumCelular" name="NumCelular" id="NumCelular" placeholder="Ingrese su numero de celular">
             </div>
-        </form>
+    			 <p>¿Ya tienes cuenta? <a th:href="@{'/index'}">Inicia Sesión</a></p>
 
         <div class="formMain">
-            <div class="formRegistrar">
-                <a href="index.html"> <button class="button-base">Atras</button></a>
-            </div>
+          
             <div class="formIngresar">
                 <a href="index.html"> <button class="button-base" type="submit">Crear cuenta</button></a>
             </div>
         </div>  
+           </form>
     </div>
 </body>
 </html>

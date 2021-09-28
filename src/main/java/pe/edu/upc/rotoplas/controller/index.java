@@ -19,7 +19,7 @@ import pe.edu.upc.rotoplas.entities.Usuario;
 public class index {
 	
 	
-	@GetMapping("/login")
+	@GetMapping("/index")
 	public String login(@RequestParam(required = false) String error ,ModelMap model	) {
 		
 		
@@ -31,7 +31,7 @@ public class index {
 		
 		
 		
-		return "login";
+		return "index";
 	}
 	
 

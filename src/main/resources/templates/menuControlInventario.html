@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr" xmlns:th="https://www.thymeleaf.org/"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Menu de control de inventario</title>
-    <link rel="stylesheet" href="css/menuControlInventarioStyle.css"/>
+    <link rel="stylesheet" href="/css/menuControlInventarioStyle.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet"/>
@@ -15,13 +16,13 @@
 <body>
    
     <div class="Encabezado">
-        <img src="img/rotoplas-logo.png" alt="rotoplas-logo" class="Encabezado__logo">
+        <img src="/img/rotoplas-logo.png" alt="rotoplas-logo" class="Encabezado__logo">
         <div class="Encabezado__Detalle">
             <div>Área de Control de Inventarios</div>
-            <div>Almacén Perú</div>
+            <div th:text="'Almacén '+${almacenenviar.distrito.NDistrito}"></div>
             <div>¿Qué desea realizar?</div>
         </div>
-        <a href="index.html"><button class="button-base eliminar">Cerrar sesión</button></a>
+        <a th:href="@{'/index'}"><button class="button-base eliminar">Cerrar sesión</button></a>
     </div>
     <div class="main">
         <div class="main__contenido">
@@ -29,7 +30,7 @@
                 <div class="main__titulo">Operaciones</div>
                 <div class="main__cards">
                     <div class="main__card">
-                        <a href="registrarProducto.html"><i class="fas fa-plus-square fa-10x"></i></a>
+                        <a th:href="@{'/crear/'+${almacenenviar.CAlmacen}+'/'+${#request.userPrincipal.principal.getID}}"><i class="fas fa-plus-square fa-10x"></i></a>
                         <div>Registrar nuevo producto</div>
                     </div>
                     <div class="main__card">
@@ -53,7 +54,7 @@
             </div>
         </div>
         <div class="footer">
-            <a href="seleccionAlmacen.html"><button class="button-base">Atrás</button></a>
+            <a th:href="@{'/seleccionAlmacen'}"><button class="button-base">Atrás</button></a>
         </div>
     </div>
 

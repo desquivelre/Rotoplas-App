@@ -37,7 +37,7 @@ public class CrearProductoController {
 	@Autowired
 	private UsuarioService usuarioService;
 	
-	@GetMapping("{id_Almacen}/{id_usuario}")
+	@GetMapping("/{id_Almacen}/{id_usuario}")
 	public String Crear_Producto(Model model, @PathVariable Integer id_Almacen, @PathVariable Integer id_usuario) {
 		try {
 			Optional<Almacen> almacen_encontrado = almacenService.findById(id_Almacen);
@@ -60,7 +60,7 @@ public class CrearProductoController {
 			// TODO: handle exception
 		}
 		
-		return "";
+		return "registrarProducto.html";
 	}
 	
 	@PostMapping("guardar_producto")

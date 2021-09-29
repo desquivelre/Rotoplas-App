@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr" xmlns:th="https://www.thymeleaf.org/"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Menu de control de inventario</title>
-    <link rel="stylesheet" href="css/modificarStock.css"/>
+    <link rel="stylesheet" href="/css/modificarStock.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet"/>
@@ -42,57 +43,17 @@
                             <th>Capacidad (L)</th>
                             <th>Color</th>
                             <th>Stock</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Tanque</td>
-                            <td>8</td>
-                            <td>Rojo</td>
-                            <td>200</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Tanque</td>
-                            <td>10</td>
-                            <td>Verde</td>
-                            <td>150</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Cisterna</td>
-                            <td>20</td>
-                            <td>Rojo</td>
-                            <td>650</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Cisterna</td>
-                            <td>20</td>
-                            <td>Rojo</td>
-                            <td>650</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Cisterna</td>
-                            <td>20</td>
-                            <td>Rojo</td>
-                            <td>650</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Cisterna</td>
-                            <td>20</td>
-                            <td>Rojo</td>
-                            <td>650</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Cisterna</td>
-                            <td>20</td>
-                            <td>Rojo</td>
-                            <td>650</td>
+                        <tr th:each="productos:${productos}">
+                            <td th:text="${productos.producto.cproducto}"></td>
+                            <td th:text="${productos.producto.categoria.ncategoria}"></td>
+                            <td th:text="${productos.producto.numcapacidadlitros}"></td>
+                            <td th:text="${productos.producto.color.ncolores}"></td>
+                            <td th:text="${productos.StockProducto}"></td>
+                            <td><a href="menuControlInventario.html"><button class="button-base">Modificar</button></a></td>
                         </tr>
                     </tbody>
                </table>

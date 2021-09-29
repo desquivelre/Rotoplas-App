@@ -60,8 +60,7 @@ public class Color {
 	public void setColor(List<Color> color) {
 		this.color = color;
 	}
-	
-	
+
 
 	
 	

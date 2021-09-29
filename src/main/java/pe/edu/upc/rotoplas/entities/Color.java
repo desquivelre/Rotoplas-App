@@ -25,6 +25,44 @@ public class Color {
 	@OneToMany(mappedBy = "color", fetch = FetchType.LAZY)
 	private List<Color> color;
 
+	public Color() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Color(Integer ccolor, String ncolores, List<Color> color) {
+		super();
+		this.ccolor = ccolor;
+		this.ncolores = ncolores;
+		this.color = color;
+	}
+
+	public Integer getCcolor() {
+		return ccolor;
+	}
+
+	public void setCcolor(Integer ccolor) {
+		this.ccolor = ccolor;
+	}
+
+	public String getNcolores() {
+		return ncolores;
+	}
+
+	public void setNcolores(String ncolores) {
+		this.ncolores = ncolores;
+	}
+
+	public List<Color> getColor() {
+		return color;
+	}
+
+	public void setColor(List<Color> color) {
+		this.color = color;
+	}
+	
+	
+
 	
 	
 }

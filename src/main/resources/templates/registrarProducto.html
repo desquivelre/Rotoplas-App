@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+S<!DOCTYPE html>
 <html lang="en" dir="ltr" xmlns:th="https://www.thymeleaf.org/"
 xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
@@ -9,47 +9,75 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
-    <title>Log in</title>
+    <title>Añadir producto</title>
 </head>
 <body>
    <div class="main">
         
         <div class="main__titulo">Registro de nuevo producto</div>
 
-        <form action="" class="main__formRegistrarProducto">
-            <div class="formInput">
+        <form th:action="@{/crear/guardar_producto}" th:object="${nuevo_producto}" class="main__formRegistrarProducto", method="post">
+        
+          <!--  <div class="formInput">
                 <label for="">Código: </label><input type="text">
-            </div>
+                
+            </div> -->  
+            
+            
+            <input type="text" class="form-control" th:field="*{cproducto}" hidden = "true">
+            
+            <input type="text" class="form-control" th:field="*{nproducto}" hidden = "true">
             <div class="formInput">
                 <label for="">Categoría: </label>
                 <div class="box">
-                    <select name="" id="">
-                        <option value="">Cisterna</option>
-                        <option value="">Bomba</option>
-                        <option value="">Filtro</option>
+                    <select name="" id="" th:field="*{categoria}" >
+                        <option th:each ="categoria : ${categorias}"
+                        			     th:value = "${categoria.ccategoria}"
+                        			     th:text = "${categoria.ncategoria}">Cisterna</option>
                     </select>
                 </div>
             </div>
+            
             <div class="formInput">
-                <label for="">Capacidad (L): </label><input type="text">
+                <label for="">Capacidad (L): </label><input type="text" th:field="*{numcapacidadlitros}">
             </div>
+            
             <div class="formInput">
-                <label for="">Color: </label><input type="text">
+                <label for="">Categoría: </label>
+                <div class="box">
+                    <select name="" id="" th:field="*{color}" >
+                        <option th:each ="color : ${colores}"
+                        			     th:value = "${color.ccolor}"
+                        			     th:text = "${color.ncolores}">Cisterna</option>
+                    </select>
+                </div>
             </div>
+            
+ 
+ 			<input type="text" class="form-control" th:object="${nuevo_detalle}" th:field="*{producto.cproducto}" hidden =" true">
+            <input type="text" class="form-control" th:object="${nuevo_detalle}" th:field="*{almacen.CAlmacen}" hidden = "true">
+            
+             <input type="text" class="form-control" th:object="${almacen}" th:field="*{CAlmacen}" hidden = "true">
+            
+            
             <div class="formInput">
-                <label for="">Stock inicial: </label><input type="text">
+                <label for="">Stock inicial: </label><input type="text" th:object="${nuevo_detalle}" th:field="*{StockProducto}">
             </div>
-        </form>
+                 
 
         <div class="main__cambioPagina">
             <div class="formAtras">
                 <a href="menuControlInventario.html"><button class="button-base">Atrás</button></a>
             </div>
             <div class="formRegistrar">
-                <a href="menuControlInventario.html"><button class="button-base" type="submit">Registrar</button></a>
+                
             </div>
         
         </div>  
+        
+        <button class="button-base" type="submit">Registrar</button>
+        </form>
+        
     </div>
     
 </body>

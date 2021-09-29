@@ -38,7 +38,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
                         <div>Transferir stock a otro almacén</div>
                     </div>
                     <div class="main__card">
-                        <a href="modificarStock.html"><i class="fas fa-edit fa-10x"></i></a>
+                        <a th:href="@{'/modificar/'+${almacenenviar.CAlmacen}}"><i class="fas fa-edit fa-10x"></i></a>
                         <div>Modificar stock</div>
                     </div>
                 </div>

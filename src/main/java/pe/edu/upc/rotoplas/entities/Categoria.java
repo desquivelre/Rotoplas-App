@@ -29,4 +29,50 @@ public class Categoria {
 	@OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY)
 	private List<Categoria> categoria;
 
+
+	public Categoria() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public Categoria(Integer ccategoria, String ncategoria, List<Categoria> categoria) {
+		super();
+		this.ccategoria = ccategoria;
+		this.ncategoria = ncategoria;
+		this.categoria = categoria;
+	}
+
+
+	public Integer getCcategoria() {
+		return ccategoria;
+	}
+
+
+	public void setCcategoria(Integer ccategoria) {
+		this.ccategoria = ccategoria;
+	}
+
+
+	public String getNcategoria() {
+		return ncategoria;
+	}
+
+
+	public void setNcategoria(String ncategoria) {
+		this.ncategoria = ncategoria;
+	}
+
+
+	public List<Categoria> getCategoria() {
+		return categoria;
+	}
+
+
+	public void setCategoria(List<Categoria> categoria) {
+		this.categoria = categoria;
+	}
+	
+
+	
 }

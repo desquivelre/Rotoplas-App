@@ -106,7 +106,7 @@ public class CrearProductoController {
 			return "redirect:/crear/{id_Almacen}/{id_usuario}";
 		}else {
 			  
-			model.addAttribute("producto",productoService.registrar(producto));
+			  model.addAttribute("producto",productoService.registrar(producto));
 			  model.addAttribute("detalleAlmacen",detalleAlmacenService.registrar(detalleAlmacen));
 			  
 		System.out.println(producto.getCproducto());

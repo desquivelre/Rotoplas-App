@@ -34,7 +34,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
                         <div>Registrar nuevo producto</div>
                     </div>
                     <div class="main__card">
-                        <a href="transferirStockOtroAlmacen.html"><i class="fas fa-people-arrows fa-10x"></i></a>
+                        <a th:href="@{'/transferir/'+${almacenenviar.CAlmacen}}"><i class="fas fa-people-arrows fa-10x"></i></a>
                         <div>Transferir stock a otro almacén</div>
                     </div>
                     <div class="main__card">

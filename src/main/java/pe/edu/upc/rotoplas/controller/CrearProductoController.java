@@ -66,7 +66,10 @@ public class CrearProductoController {
 				producto.setNproducto("GAAA");
 				
 				
+				
+				
 				DetalleAlmacenID detalle_id = new DetalleAlmacenID();
+				
 				
 				
 				
@@ -83,6 +86,9 @@ public class CrearProductoController {
 				model.addAttribute("categorias", categorias);
 				model.addAttribute("colores", colores);
 				
+				
+				
+				
 			}
 			
 		} catch (Exception e) {
@@ -95,8 +101,9 @@ public class CrearProductoController {
 	}
 	
 	@PostMapping("guardar_producto")
-	public String Guardar_Producto(Model model, @ModelAttribute("nuevo_producto") Producto producto, @ModelAttribute("nuevo_detalle") DetalleAlmacen detalleAlmacen,
-								   @ModelAttribute("almacen") Almacen almacen) {
+	public String Guardar_Producto(Model model, @ModelAttribute("nuevo_producto") Producto producto, 
+												@ModelAttribute("nuevo_detalle") DetalleAlmacen detalleAlmacen,
+												@ModelAttribute("almacen") Almacen almacen) {
 		try {
 			
 			
@@ -107,9 +114,14 @@ public class CrearProductoController {
 			// TODO: handle exception
 		}
 		
+		
+		
 		System.out.println(producto.getCproducto());
 		System.out.println(producto.getCategoria().getNcategoria());
 		System.out.println(producto.getColor().getNcolores());
+		
+		
+		
 		
 		return "redirect:/seleccionAlmacen/" + almacen.getCAlmacen();
 	}

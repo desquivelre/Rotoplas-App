@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="https://www.thymeleaf.org/"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Transferir stock</title>
+    <link rel="stylesheet" href="/css/modificarStock.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet"/>
+    <script src="https://kit.fontawesome.com/962e5cda46.js" crossorigin="anonymous"></script>
+
+</head>
+<body>   
+    <div class="main">
+        <div class="main__titulo">Transferir stock</div>
+        <div class="main__contenido">
+           <div class="main__form">
+				
+               	<div>Seleccione el producto que desee transferir</div>
+           </div>
+        
+           <div class="main__table">
+               <table class="table__content">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Tipo</th>
+                            <th>Capacidad (L)</th>
+                            <th>Color</th>
+                            <th>Stock</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="productos:${productos}">
+                            <td th:text="${productos.producto.cproducto}"></td>
+                            <td th:text="${productos.producto.categoria.ncategoria}"></td>
+                            <td th:text="${productos.producto.numcapacidadlitros}"></td>
+                            <td th:text="${productos.producto.color.ncolores}"></td>
+                            <td th:text="${productos.StockProducto}"></td>
+                            <td><a th:href="@{'/transferir/'+${almacen_local.CAlmacen}+'/transferir/'+${productos.producto.cproducto}}"><button class="button-base">Transferir</button></a></td>
+                        </tr>
+                    </tbody>
+               </table>
+           </div>
+        </div>
+        <div class="footer">
+            <a th:href="@{'/seleccionAlmacen/'+${almacen_local.CAlmacen}}"><button class="button-base">Atrás</button></a>
+            
+        </div>
+    </div>
+
+  
+</body>
+
+</html>

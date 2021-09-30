@@ -29,24 +29,26 @@ public class Almacen {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "CDistrito", nullable = false)
     private Distrito distrito;
+
+    @OneToMany(mappedBy = "almacen_local", fetch = FetchType.LAZY)
+    private List<Transferencia> Transferencia_local;
     
- 
-    
-    @OneToMany(mappedBy = "almacen", fetch = FetchType.LAZY)
-    private List<DetalleUsuario> DetallesUsuario;
+    @OneToMany(mappedBy = "almacen_destino", fetch = FetchType.LAZY)
+    private List<Transferencia> Transferencia_destino;
 
 	public Almacen() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public Almacen(Integer cAlmacen, String tDireccionAlmacen, Distrito distrito, 
-			List<DetalleUsuario> detallesUsuario) {
+	public Almacen(Integer cAlmacen, String tDireccionAlmacen, Distrito distrito,
+			List<Transferencia> transferencia_local, List<Transferencia> transferencia_destino) {
 		super();
 		CAlmacen = cAlmacen;
 		TDireccionAlmacen = tDireccionAlmacen;
 		this.distrito = distrito;
-		
-		DetallesUsuario = detallesUsuario;
+		Transferencia_local = transferencia_local;
+		Transferencia_destino = transferencia_destino;
 	}
 
 	public Integer getCAlmacen() {
@@ -73,14 +75,23 @@ public class Almacen {
 		this.distrito = distrito;
 	}
 
-
-
-	public List<DetalleUsuario> getDetallesUsuario() {
-		return DetallesUsuario;
+	public List<Transferencia> getTransferencia_local() {
+		return Transferencia_local;
 	}
 
-	public void setDetallesUsuario(List<DetalleUsuario> detallesUsuario) {
-		DetallesUsuario = detallesUsuario;
+	public void setTransferencia_local(List<Transferencia> transferencia_local) {
+		Transferencia_local = transferencia_local;
 	}
+
+	public List<Transferencia> getTransferencia_destino() {
+		return Transferencia_destino;
+	}
+
+	public void setTransferencia_destino(List<Transferencia> transferencia_destino) {
+		Transferencia_destino = transferencia_destino;
+	}
+    
+    
+	
 	
 }

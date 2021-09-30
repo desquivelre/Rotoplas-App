@@ -1,5 +1,6 @@
 package pe.edu.upc.rotoplas.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,12 @@ import pe.edu.upc.rotoplas.entities.Almacen;
 import pe.edu.upc.rotoplas.entities.DetalleAlmacen;
 import pe.edu.upc.rotoplas.entities.DetalleAlmacenID;
 import pe.edu.upc.rotoplas.entities.Producto;
+import pe.edu.upc.rotoplas.entities.Transferencia;
 import pe.edu.upc.rotoplas.entities.Usuario;
 import pe.edu.upc.rotoplas.service.crud.AlmacenService;
 import pe.edu.upc.rotoplas.service.crud.DetalleAlmacenService;
 import pe.edu.upc.rotoplas.service.crud.ProductoService;
+import pe.edu.upc.rotoplas.service.crud.TransferenciaService;
 import pe.edu.upc.rotoplas.service.crud.UsuarioService;
 
 @Controller
@@ -37,62 +40,111 @@ public class TransferirProductoController {
 	@Autowired
 	private UsuarioService usuarioService;
 	
-	@GetMapping("{id_almacen}/{id_usuario}/{id_almacen_receptor}")
-	public String Transferir(Model model, @PathVariable Integer id_almacen, @PathVariable Integer id_usuario) {
+	@Autowired
+	private TransferenciaService transferenciaService;
+	
+	@GetMapping("/{id_almacen_local}")
+	public String Transferir(Model model, @PathVariable Integer id_almacen_local) {
 		
 		try {
-			Optional<Almacen> almacen_encontrado = almacenService.findById(id_almacen);
-			Optional<Usuario> usuario_encontrado = usuarioService.findById(id_usuario);
-			Almacen almacen_receptor = new Almacen();
-			
-			if(almacen_encontrado.isPresent()) {
-				model.addAttribute("almacen", almacen_encontrado.get());
-				model.addAttribute("usuario", usuario_encontrado);
-				model.addAttribute("almacen_receptor", almacen_receptor);
+			Optional<Almacen> almacen_local = almacenService.findById(id_almacen_local);
+			if(almacen_local.isPresent()) {
+				Transferencia transferencia = new Transferencia();
+				
+				List<DetalleAlmacen> productos = detalleAlmacenService.filterByAlmacen(id_almacen_local);
+				
+				
+				model.addAttribute("productos", productos);
+				model.addAttribute("almacen_local", almacen_local.get());
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return "";
+		return "TransferirStock.html";
 	}
 	
-	@PostMapping("realizar_transferencia/{id_almacen_receptor}/{id_almacen_local}/{id_producto}/{cantidad}")
-	public String Realizar_Transferencia(Model model, @ModelAttribute("almacen") Almacen almacen, 
-										 @ModelAttribute("almacen_receptor") Almacen almacen_receptor,
-			   							 @PathVariable Integer id_almacen_receptor,
-										 @PathVariable Integer id_producto, @PathVariable Integer cantidad,
-										 @PathVariable Integer id_almacen_local) {
+	@GetMapping("/{id_almacen_local}/transferir/{id_producto}")
+	public String Transferir_Stock(Model model, @PathVariable Integer id_almacen_local, @PathVariable Integer id_producto) {
 		try {
-		//	Optional<Almacen> almacen_receptor = almacenService.findById(id_almacen_receptor);
 			Optional<Almacen> almacen_local = almacenService.findById(id_almacen_local);
-			Optional<Producto> producto_encontrado = productoService.findById(id_producto);
-								
-					
-			Optional<DetalleAlmacen> detalle_receptor = detalleAlmacenService.findById(new DetalleAlmacenID(producto_encontrado.get().getCproducto(), almacen_receptor.getCAlmacen()));
-			Optional<DetalleAlmacen> detalle_local = detalleAlmacenService.findById(new DetalleAlmacenID(producto_encontrado.get().getCproducto(), almacen_local.get().getCAlmacen()));
+			Optional<Producto> producto = productoService.findById(id_producto);
 			
-			if(detalle_receptor.isPresent()) {
-				//Si el producto existe en el almacen a recibir, se cambian las cantidades
-				detalle_local.get().setStockProducto(detalle_local.get().getStockProducto() -  cantidad);
-				detalle_receptor.get().setStockProducto(detalle_receptor.get().getStockProducto() + cantidad);
+			List<DetalleAlmacen> listaproducto_trasnferir = detalleAlmacenService.filterByAlmacenProducto(id_almacen_local, id_producto);
+			DetalleAlmacen producto_transferir = listaproducto_trasnferir.get(0);
+			
+			if(producto.isPresent()) {
+				Transferencia transferencia = new Transferencia();
+				List<Transferencia> transferencias = transferenciaService.getAll();
 				
+				transferencia.setCTransferencia(transferencias.size() + 1); //SIZE GOD
 				
-				DetalleAlmacen detalle_actualizado_local = detalle_local.get();
-				DetalleAlmacen detalle_return = detalleAlmacenService.update(detalle_actualizado_local);
-			}
-			else {
-				//Si el almacén receptor no tiene ese producto, primero se añadirá ese producto en ese almacén con con la cantidad incial 
-				DetalleAlmacen nuevo_detalle = new DetalleAlmacen();
-				nuevo_detalle.setAlmacen(almacen_receptor);
-				nuevo_detalle.setProducto(producto_encontrado.get());
-				nuevo_detalle.setStockProducto(cantidad);
+				transferencia.setAlmacen_local(almacen_local.get());
+				transferencia.setProducto(producto.get());
 				
+				List<Almacen> almacenes = almacenService.getAll();
+				
+				model.addAttribute("transferencia", transferencia);
+				model.addAttribute("almacenes", almacenes);
+				model.addAttribute("producto_transferir", producto_transferir);
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 		
-		return "";
+		
+		return "TransferirStockForm.html";
+	}
+	
+	@PostMapping("transferir_stock")
+	public String Guardar_trasnferencia(Model model, @ModelAttribute("transferencia") Transferencia transferencia) {
+		try {
+			List<DetalleAlmacen> detalle_local = detalleAlmacenService.filterByAlmacenProducto(transferencia.getAlmacen_local().getCAlmacen(), transferencia.getProducto().getCproducto());
+			List<DetalleAlmacen> detalle_destino = detalleAlmacenService.filterByAlmacenProducto(transferencia.getAlmacen_destino().getCAlmacen(), transferencia.getProducto().getCproducto());
+			
+			List<DetalleAlmacen> detalles_totales = detalleAlmacenService.getAll();
+			
+			if(detalle_destino.isEmpty()) {
+				DetalleAlmacen nuevo_detalle_destino = new DetalleAlmacen();
+				nuevo_detalle_destino.setAlmacen(transferencia.getAlmacen_destino());
+				nuevo_detalle_destino.setProducto(transferencia.getProducto());
+				nuevo_detalle_destino.setStockProducto(transferencia.getCantidad());
+				
+				DetalleAlmacen detalle_local_2 = detalle_local.get(0);
+				detalle_local_2.setStockProducto(detalle_local_2.getStockProducto() - transferencia.getCantidad());
+				
+				
+				DetalleAlmacen detalle_local_return = detalleAlmacenService.update(detalle_local_2);
+				DetalleAlmacen nuevo_detalle_return = detalleAlmacenService.create(nuevo_detalle_destino);
+				
+				
+			}
+			else {
+				
+				DetalleAlmacen detalle_destino_2 = detalle_destino.get(0);
+				DetalleAlmacen detalle_local_2 = detalle_local.get(0);
+				
+				detalle_local_2.setStockProducto(detalle_local_2.getStockProducto() - transferencia.getCantidad());
+				detalle_destino_2.setStockProducto(detalle_destino_2.getStockProducto() + transferencia.getCantidad());
+				
+				DetalleAlmacen detalle_local_return = detalleAlmacenService.update(detalle_local_2);
+				DetalleAlmacen detalle_destino_return = detalleAlmacenService.update(detalle_destino_2);
+			}
+			
+			
+			Transferencia transferencia_return = transferenciaService.create(transferencia);
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		System.out.println(transferencia.getCTransferencia());
+		System.out.println(transferencia.getAlmacen_destino().getDistrito().getNDistrito());
+		System.out.println(transferencia.getAlmacen_local().getDistrito().getNDistrito());
+		System.out.println(transferencia.getProducto().getCproducto());
+		System.out.println(transferencia.getCantidad());
+		
+		return "redirect:/transferir/" + transferencia.getAlmacen_local().getCAlmacen();
 	}
 	
 }

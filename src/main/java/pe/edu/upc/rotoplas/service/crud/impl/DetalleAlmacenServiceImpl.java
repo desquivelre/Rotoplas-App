@@ -31,6 +31,13 @@ public class DetalleAlmacenServiceImpl implements DetalleAlmacenService{
 		return detalleAlmacenRepository.filterByAlmacen(idAlmacen);
 	}
 
+	@Override
+	public DetalleAlmacen registrar(DetalleAlmacen a) {
+		// TODO Auto-generated method stub
+		return detalleAlmacenRepository.save(a);
+		
+	}
+
 	
 
 }

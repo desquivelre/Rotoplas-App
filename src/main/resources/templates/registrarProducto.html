@@ -16,7 +16,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
         
         <div class="main__titulo">Registro de nuevo producto</div>
 
-        <form th:action="@{/crear/guardar_producto}" th:object="${nuevo_producto}" class="main__formRegistrarProducto", method="post">
+        <form th:action="@{'/crear/'+${almacen.CAlmacen}+'/'+${#request.userPrincipal.principal.getID}}" th:object="${nuevo_producto}" class="main__formRegistrarProducto", method="post">
         
           <!--  <div class="formInput">
                 <label for="">Código: </label><input type="text">
@@ -37,12 +37,19 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
                     </select>
                 </div>
             </div>
+    		<input type="text" class="form-control" th:object="${nuevo_detalle}" th:field="*{producto.cproducto}" hidden =" true">
+            <input type="text" class="form-control" th:object="${nuevo_detalle}" th:field="*{almacen.CAlmacen}" hidden = "true">
             
-            <div class="formInput">
-                <label for="">Capacidad (L): </label><input type="text" th:field="*{numcapacidadlitros}">
+             <input type="text" class="form-control" th:object="${almacen}" th:field="*{CAlmacen}" hidden = "true">
+            
+               	
+    
+              <div class="formInput">
+              <div class="alert alert-danger" th:if="${#fields.hasErrors('numcapacidadlitros')}" th:errors= "*{numcapacidadlitros}">...</div>
+                <label for="">Capacidad (L): </label><input class="controls" type="text" name="numcapacidadlitros" id="numcapacidadlitros" th:field="*{numcapacidadlitros}" required autofocus pattern="[0-9]+" title="La capacidad debe ser mayor a 0">
             </div>
             
-            <div class="formInput">
+ 			<div class="formInput">
                 <label for="">Categoría: </label>
                 <div class="box">
                     <select name="" id="" th:field="*{color}" >
@@ -54,14 +61,9 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
             </div>
             
  
- 			<input type="text" class="form-control" th:object="${nuevo_detalle}" th:field="*{producto.cproducto}" hidden =" true">
-            <input type="text" class="form-control" th:object="${nuevo_detalle}" th:field="*{almacen.CAlmacen}" hidden = "true">
-            
-             <input type="text" class="form-control" th:object="${almacen}" th:field="*{CAlmacen}" hidden = "true">
-            
-            
             <div class="formInput">
-                <label for="">Stock inicial: </label><input type="text" th:object="${nuevo_detalle}" th:field="*{StockProducto}">
+         
+                <label for="">Stock inicial: </label><input class="controls" type="text" th:object="${nuevo_detalle}" id="StockProducto" name="StockProducto" th:field="*{StockProducto}"required autofocus pattern="[0-9]+" title="El Stock debe ser mayor a 0">
             </div>
                  
 

@@ -19,4 +19,10 @@ public class ProductoServiceImpl implements ProductoService {
 		return productoRepository;
 	}
 
+	@Override
+	public Producto registrar(Producto p) {
+		return productoRepository.save(p);
+		
+	}
+
 }

@@ -4,9 +4,12 @@ import java.awt.Color;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -90,27 +93,29 @@ public class CrearProductoController {
 		}
 		
 		return "registrarProducto.html";
-		
-		
 	}
 	
-	@PostMapping("guardar_producto")
-	public String Guardar_Producto(Model model, @ModelAttribute("nuevo_producto") Producto producto, @ModelAttribute("nuevo_detalle") DetalleAlmacen detalleAlmacen,
-								   @ModelAttribute("almacen") Almacen almacen) {
-		try {
-			
-			
-			Producto producto_return = productoService.create(producto);
-			DetalleAlmacen detalle_return = detalleAlmacenService.create(detalleAlmacen);
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		
+
+
+	
+	@PostMapping("/{id_Almacen}/{id_usuario}")
+	public String Guardar_Producto(@Valid @ModelAttribute Producto producto,BindingResult result , @ModelAttribute DetalleAlmacen detalleAlmacen,BindingResult result2,Almacen almacen,  Model model,String error) {
+	
+		if(result.hasErrors() || result2.hasErrors()) {
+			System.out.println("Existen errores");
+			return "redirect:/crear/{id_Almacen}/{id_usuario}";
+		}else {
+			  
+			model.addAttribute("producto",productoService.registrar(producto));
+			  model.addAttribute("detalleAlmacen",detalleAlmacenService.registrar(detalleAlmacen));
+			  
 		System.out.println(producto.getCproducto());
 		System.out.println(producto.getCategoria().getNcategoria());
 		System.out.println(producto.getColor().getNcolores());
+		   System.out.println("Creado Correctamente");
 		
-		return "redirect:/seleccionAlmacen/" + almacen.getCAlmacen();
+		return "redirect:/seleccionAlmacen/" + almacen.getCAlmacen();	
+		}
+	
 	}
 }

@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="Producto")
@@ -30,21 +32,14 @@ public class Producto {
 	@Column(name="Nproducto",length = 30,nullable=false)
 	private String nproducto;
 	
+	@NotNull
+	@Min(1)
 	@Column(name="Numcapacidadlitros",nullable = false)
 	private Integer numcapacidadlitros;
 
 	public Producto() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-
-	public Producto(Integer cproducto, Categoria categoria, Color color, String nproducto, Integer numcapacidadlitros) {
-		super();
-		this.cproducto = cproducto;
-		this.categoria = categoria;
-		this.color = color;
-		this.nproducto = nproducto;
-		this.numcapacidadlitros = numcapacidadlitros;
 	}
 
 	public Integer getCproducto() {
@@ -86,7 +81,18 @@ public class Producto {
 	public void setNumcapacidadlitros(Integer numcapacidadlitros) {
 		this.numcapacidadlitros = numcapacidadlitros;
 	}
-	
+
+	public Producto(Integer cproducto, Categoria categoria, Color color, String nproducto,
+			@NotNull @Min(1) Integer numcapacidadlitros) {
+		super();
+		this.cproducto = cproducto;
+		this.categoria = categoria;
+		this.color = color;
+		this.nproducto = nproducto;
+		this.numcapacidadlitros = numcapacidadlitros;
+	}
+
+
 	
 	
 	

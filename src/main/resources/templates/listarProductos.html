@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr" xmlns:th="https://www.thymeleaf.org/"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Menu de control de inventario</title>
-    <link rel="stylesheet" href="css/listarProductosStyle.css"/>
+    <link rel="stylesheet" href="/css/listarProductosStyle.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet"/>
@@ -21,32 +22,23 @@
                     <div class="main__formInput">
                         <label for="">Tipo de producto: </label>
                         <div class="box">
-                            <select name="" id="">
-                                <option value="">Cisterna</option>
-                                <option value="">Tanque</option>
+                            <select name="" id="" onChange="window.location.href=this.value">
+                            	<option selected>Categoria</option>
+                                <option th:each="categorias : ${categorias}" th:text="${categorias.ncategoria}" th:value="@{'/listarproductos/'+${almacen.CAlmacen}+'/categoria/'+${categorias.ccategoria}}" ></option>
                             </select>
                         </div>
                     </div>
                     <div class="main__formInput">
-                        <label for="">Capacidad (L): </label>
+                        <label for="">Color: </label>
                         <div class="box">
-                            <select name="" id="">
-                                <option value="">De mayor a menor</option>
-                                <option value="">De menor a mayor</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="main__formInput">
-                        <label for="">Cantidad stock: </label>
-                        <div class="box">
-                            <select name="" id="">
-                                <option value="">De mayor a menor</option>
-                                <option value="">De menor a mayor</option>
+                            <select name="" id="" onChange="window.location.href=this.value">
+                            	<option selected>Color</option>
+                                <option th:each="colores : ${colores}" th:text="${colores.ncolores}" th:value="@{'/listarproductos/'+${almacen.CAlmacen}+'/color/'+${colores.ccolor}}"></option>
                             </select>
                         </div>
                     </div>
                </form>
-               <a href="listarProductos.html" class="link-button"><button class="button-base filtrar">Filtrar productos</button></a>
+               <a th:href="@{'/listarproductos/'+${almacen.CAlmacen}}" class="link-button"><button class="button-base filtrar">Resetear tabla</button></a>
            </div>
         
            <div class="main__table">
@@ -58,65 +50,24 @@
                             <th>Capacidad (L)</th>
                             <th>Color</th>
                             <th>Stock</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Tanque</td>
-                            <td>8</td>
-                            <td>Rojo</td>
-                            <td>200</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Tanque</td>
-                            <td>10</td>
-                            <td>Verde</td>
-                            <td>150</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Cisterna</td>
-                            <td>20</td>
-                            <td>Rojo</td>
-                            <td>650</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Cisterna</td>
-                            <td>20</td>
-                            <td>Rojo</td>
-                            <td>650</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Cisterna</td>
-                            <td>20</td>
-                            <td>Rojo</td>
-                            <td>650</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Cisterna</td>
-                            <td>20</td>
-                            <td>Rojo</td>
-                            <td>650</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Cisterna</td>
-                            <td>20</td>
-                            <td>Rojo</td>
-                            <td>650</td>
+                        <tr th:each="productos:${productos}">
+                            <td th:text="${productos.producto.cproducto}"></td>
+                            <td th:text="${productos.producto.categoria.ncategoria}"></td>
+                            <td th:text="${productos.producto.numcapacidadlitros}"></td>
+                            <td th:text="${productos.producto.color.ncolores}"></td>
+                            <td th:text="${productos.StockProducto}"></td>
+                            <td><a th:href="@{'/modificar/'+${almacen.CAlmacen}+'/producto/'+${productos.producto.cproducto}}"><button class="button-base eliminar">Eliminar</button></a></td>
                         </tr>
                     </tbody>
                </table>
            </div>
         </div>
         <div class="footer">
-            <a href="menuControlInventario.html"><button class="button-base">Atrás</button></a>
-            <a href="listarProductos.html"><button class="button-base eliminar">Eliminar</button></a>
+            <a th:href="@{'/seleccionAlmacen/'+${almacen.CAlmacen}}"><button class="button-base">Atrás</button></a>
         </div>
     </div>
 

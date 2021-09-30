@@ -32,11 +32,34 @@ public class DetalleAlmacenServiceImpl implements DetalleAlmacenService{
 	}
 
 	@Override
+
 	public DetalleAlmacen registrar(DetalleAlmacen a) {
 		// TODO Auto-generated method stub
 		return detalleAlmacenRepository.save(a);
 		
 	}
+
+
+	public List<DetalleAlmacen> filterByAlmacenProducto(Integer idAlmacen, Integer idProducto) throws Exception {
+		// TODO Auto-generated method stub
+		return detalleAlmacenRepository.filterByAlmacenProducto(idAlmacen, idProducto);
+	}
+
+	@Override
+	public List<DetalleAlmacen> filterByAlmacenCategoria(Integer idAlmacen, Integer idCategoria) throws Exception {
+		// TODO Auto-generated method stub
+		return detalleAlmacenRepository.filterByAlmacenCategoria(idAlmacen, idCategoria);
+	}
+
+	@Override
+	public List<DetalleAlmacen> filterByAlmacenColor(Integer idAlmacen, Integer idColor) throws Exception {
+		// TODO Auto-generated method stub
+		return detalleAlmacenRepository.filterByAlmacenColor(idAlmacen, idColor);
+	}
+	
+	
+	
+
 
 	
 

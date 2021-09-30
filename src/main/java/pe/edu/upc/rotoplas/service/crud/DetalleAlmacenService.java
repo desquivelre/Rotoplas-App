@@ -13,5 +13,12 @@ import pe.edu.upc.rotoplas.entities.Producto;
 public interface DetalleAlmacenService extends CrudService<DetalleAlmacen, DetalleAlmacenID> {
 
 	List<DetalleAlmacen>filterByAlmacen(Integer idAlmacen) throws Exception;
+
 	public DetalleAlmacen registrar(DetalleAlmacen a);
+
+	List<DetalleAlmacen>filterByAlmacenProducto(Integer idAlmacen, Integer idProducto) throws Exception;
+	
+	List<DetalleAlmacen>filterByAlmacenCategoria(Integer idAlmacen, Integer idCategoria) throws Exception;
+	List<DetalleAlmacen>filterByAlmacenColor(Integer idAlmacen, Integer idColor) throws Exception;
+
 }

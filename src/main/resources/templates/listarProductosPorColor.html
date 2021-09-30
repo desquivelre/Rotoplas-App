@@ -6,7 +6,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Menu de control de inventario</title>
-    <link rel="stylesheet" href="/css/modificarStock.css"/>
+    <link rel="stylesheet" href="/css/listarProductosStyle.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet"/>
@@ -15,11 +15,30 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 </head>
 <body>   
     <div class="main">
-        <div class="main__titulo">Modificar stock</div>
+        <div class="main__titulo">Lista de productos</div>
         <div class="main__contenido">
            <div class="main__form">
-				
-               	<div>Seleccione el registro que desee modificar</div>
+               <form action="">
+                   <div class="main__formInput">
+                        <label for="">Tipo de producto: </label>
+                        <div class="box">
+                            <select name="" id="" onChange="window.location.href=this.value">
+                            	<option selected>Categoria</option>
+                                <option th:each="categorias : ${categorias}" th:text="${categorias.ncategoria}" th:value="@{'/listarproductos/'+${almacen.CAlmacen}+'/categoria/'+${categorias.ccategoria}}" ></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="main__formInput">
+                        <label for="">Color: </label>
+                        <div class="box">
+                            <select name="" id="" onChange="window.location.href=this.value">
+                            	<option selected>Color</option>
+                                <option th:each="colores : ${colores}" th:text="${colores.ncolores}" th:value="@{'/listarproductos/'+${almacen.CAlmacen}+'/color/'+${colores.ccolor}}"></option>
+                            </select>
+                        </div>
+                    </div>
+               </form>
+                <a th:href="@{'/listarproductos/'+${almacen.CAlmacen}}" class="link-button"><button class="button-base filtrar">Resetear tabla</button></a>
            </div>
         
            <div class="main__table">
@@ -41,7 +60,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
                             <td th:text="${productos.producto.numcapacidadlitros}"></td>
                             <td th:text="${productos.producto.color.ncolores}"></td>
                             <td th:text="${productos.StockProducto}"></td>
-                            <td><a th:href="@{'/modificar/'+${almacen.CAlmacen}+'/producto/'+${productos.producto.cproducto}}"><button class="button-base">Modificar</button></a></td>
+                            <td><a th:href="@{'/modificar/'+${almacen.CAlmacen}+'/producto/'+${productos.producto.cproducto}}"><button class="button-base eliminar">Eliminar</button></a></td>                       
                         </tr>
                     </tbody>
                </table>

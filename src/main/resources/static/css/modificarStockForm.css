@@ -3,7 +3,7 @@
     box-sizing: border-box;
 
     font-family: 'Rubik', sans-serif;
-
+	border: 1px solid red;
 }
 
 
@@ -133,4 +133,16 @@ body{
 }
 .main__formRegistrarProducto a button{
 	margin: auto;
+}
+
+.excusa select{
+	width: 200px;
+    height: 25px;
+    border: 1px solid black;
+    outline: none;
+    border-radius: 5px;
+    
+
+    font-size: 15px;
+    text-align: center;
 }

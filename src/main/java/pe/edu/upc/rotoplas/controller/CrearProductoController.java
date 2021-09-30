@@ -66,13 +66,11 @@ public class CrearProductoController {
 				List<pe.edu.upc.rotoplas.entities.Color> colores = colorService.getAll();
 				
 				producto.setCproducto(productos.size()+1);
-				producto.setNproducto("GAAA");
+				producto.setNproducto("");
 				
 				
 				DetalleAlmacenID detalle_id = new DetalleAlmacenID();
-				
-				
-				
+						
 				detalle.setAlmacen(almacen_encontrado.get());
 				detalle.setProducto(producto);
 				

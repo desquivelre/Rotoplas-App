@@ -13,4 +13,7 @@ public interface DetalleAlmacenService extends CrudService<DetalleAlmacen, Detal
 
 	List<DetalleAlmacen>filterByAlmacen(Integer idAlmacen) throws Exception;
 	List<DetalleAlmacen>filterByAlmacenProducto(Integer idAlmacen, Integer idProducto) throws Exception;
+	
+	List<DetalleAlmacen>filterByAlmacenCategoria(Integer idAlmacen, Integer idCategoria) throws Exception;
+	List<DetalleAlmacen>filterByAlmacenColor(Integer idAlmacen, Integer idColor) throws Exception;
 }

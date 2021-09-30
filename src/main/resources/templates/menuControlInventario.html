@@ -47,7 +47,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
                 <div class="main__titulo">Consultas</div>
                 <div class="main__cards">
                     <div class="main__card">
-                        <a href="listarProductos.html"><i class="far fa-list-alt fa-10x"></i></i></a>
+                        <a th:href="@{'/listarproductos/'+${almacenenviar.CAlmacen}}"><i class="far fa-list-alt fa-10x"></i></i></a>
                         <div>Listar productos</div>
                     </div>
                 </div>

@@ -128,5 +128,9 @@ body{
 }
 
 .main__formRegistrarProducto a{
-
+	display: flex;
+	text-decoration: none;
+}
+.main__formRegistrarProducto a button{
+	margin: auto;
 }

@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import pe.edu.upc.rotoplas.entities.Almacen;
+import pe.edu.upc.rotoplas.entities.Categoria;
 import pe.edu.upc.rotoplas.entities.DetalleAlmacen;
 import pe.edu.upc.rotoplas.entities.Producto;
 import pe.edu.upc.rotoplas.entities.Usuario;
 import pe.edu.upc.rotoplas.service.crud.AlmacenService;
+import pe.edu.upc.rotoplas.service.crud.CategoriaService;
 import pe.edu.upc.rotoplas.service.crud.DetalleAlmacenService;
 import pe.edu.upc.rotoplas.service.crud.ProductoService;
 
@@ -33,6 +35,8 @@ public class ModificarStockController {
 	@Autowired
 	private DetalleAlmacenService detallealmacenService;
 	
+	@Autowired
+	private CategoriaService categoriaService;
 
 	
 	@GetMapping("/{id_Almacen}")
@@ -41,6 +45,7 @@ public class ModificarStockController {
 			Optional<Almacen> almacen_encontrado = almacenService.findById(id_Almacen);
 			List<DetalleAlmacen> productos = detallealmacenService.filterByAlmacen(id_Almacen);
 			
+
 			model.addAttribute("productos", productos);
 			model.addAttribute("almacen", almacen_encontrado.get());	
 		

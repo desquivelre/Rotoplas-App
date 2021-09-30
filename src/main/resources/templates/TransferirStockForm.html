@@ -35,7 +35,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 			</div>
             
              <div class="formInput">
-                <label for="">Cantidad a transferir: </label><input type="text" th:field="*{cantidad}"required autofocus pattern="[1-9]+" title="El stock a transferir debe ser mayor a 0">
+                <label for="">Cantidad a transferir: </label><input type="text" th:field="*{cantidad}"required autofocus pattern="[0-9]+" title="El stock a transferir debe ser mayor a 0">
             </div>
        
             <a href="menuControlInventario.html"><button class="button-base" type="submit">Registrar</button></a>

@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import pe.edu.upc.rotoplas.entities.Almacen;
@@ -49,18 +51,45 @@ public class ModificarStockController {
 		return "modificarStock.html";
 	}
 	
-	@GetMapping("/producto/{id_producto}")
-	public String ModificarProducto(Model model, @PathVariable Integer id_Producto) {
+	@GetMapping("{id_Almacen}/producto/{id_producto}")
+	public String ModificarProducto(Model model, @PathVariable("id_Almacen") Integer id_Almacen, @PathVariable("id_producto") Integer id_Producto) {
 		try {
-			Optional<Producto> productoModificar = productoService.findById(id_Producto);
-
+			Optional<Almacen> almacenSeleccion = almacenService.findById(id_Almacen);
+			Optional<Producto> producto = productoService.findById(id_Producto);
+			List<DetalleAlmacen> listaproductoalmacenmodificar = detallealmacenService.filterByAlmacenProducto(id_Almacen, id_Producto);
 			
-			model.addAttribute("productoModificar", productoModificar.get());
+			DetalleAlmacen productoalmacenmodificar = listaproductoalmacenmodificar.get(0);
+			
+			if (producto.isPresent()) {
+				Optional<Producto> productoModificar = productoService.findById(id_Producto);
+				
+				model.addAttribute("productoModificar", productoModificar.get());
+				model.addAttribute("almacenSeleccion", almacenSeleccion.get());
+				model.addAttribute("productoalmacenmodificar", productoalmacenmodificar);
+				
+				return "modificarStockForm.html";
+			}
+			
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 		
 		return "modificarStock.html";
 	}
+	
+	@PostMapping("modificarproducto")
+	public String Guardar_Producto(Model model, @ModelAttribute("productoalmacenmodificar") DetalleAlmacen productoalmacenmodificar) {
+		try {
+			
+			DetalleAlmacen productoReturn = detallealmacenService.update(productoalmacenmodificar);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return "redirect:/modificar/"+productoalmacenmodificar.getAlmacen().getCAlmacen();
+	}
+	
 	
 }

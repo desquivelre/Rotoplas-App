@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="https://www.thymeleaf.org/"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/modificarStockForm.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+    <title>Log in</title>
+</head>
+<body>
+   <div class="main">
+        
+        <div class="main__titulo">Modificar Stock</div>
+
+        <form th:action="@{/modificar/modificarproducto}" th:object="${productoalmacenmodificar}" class="main__formRegistrarProducto", method="post">
+        
+         	<input type="text" class="form-control" th:field="*{producto}" hidden = "true">
+        	<input type="text" class="form-control" th:field="*{almacen}" hidden = "true">
+        	
+            <div class="formInput">
+                <label for="">Código: </label><input type="text" th:field="*{producto.cproducto}" disabled>
+            </div>
+            
+             <div class="formInput">
+                <label for="">Stock: </label><input type="text" th:field="*{StockProducto}">
+            </div>
+       
+            <a href="menuControlInventario.html"><button class="button-base" type="submit">Registrar</button></a>
+
+        </form>
+
+
+    </div>
+    
+</body>
+</html>

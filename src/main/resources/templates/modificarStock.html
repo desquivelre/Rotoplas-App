@@ -18,20 +18,8 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
         <div class="main__titulo">Modificar stock</div>
         <div class="main__contenido">
            <div class="main__form">
-               <form action="">
-                    <div class="main__formInput">
-                        <label for="">Tipo de movimiento: </label>
-                        <div class="box">
-                            <select name="" id="">
-                                <option value="">Entrada de stock</option>
-                                <option value="">Salida de stock</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="main__formInput">
-                        <label for="">Cantidad stock: </label><input type="text">
-                    </div>
-               </form>
+				
+               	<div>Seleccione el registro que desee modificar</div>
            </div>
         
            <div class="main__table">
@@ -53,15 +41,14 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
                             <td th:text="${productos.producto.numcapacidadlitros}"></td>
                             <td th:text="${productos.producto.color.ncolores}"></td>
                             <td th:text="${productos.StockProducto}"></td>
-                            <td><a href="menuControlInventario.html"><button class="button-base">Modificar</button></a></td>
+                            <td><a th:href="@{'/modificar/'+${almacen.CAlmacen}+'/producto/'+${productos.producto.cproducto}}"><button class="button-base">Modificar</button></a></td>
                         </tr>
                     </tbody>
                </table>
            </div>
         </div>
         <div class="footer">
-            <a href="menuControlInventario.html"><button class="button-base">Atrás</button></a>
-            <a href="menuControlInventario.html"><button class="button-base">Modificar</button></a>
+            <a th:href="@{'/seleccionAlmacen/'+${almacen.CAlmacen}}"><button class="button-base">Atrás</button></a>
         </div>
     </div>
 

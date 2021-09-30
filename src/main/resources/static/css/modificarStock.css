@@ -25,8 +25,8 @@ body{
 .button-base{
     border: none;
     background-color: skyblue;
-    font-size: 18px;
-    width:  150px;
+    font-size: 16px;
+    width:  100px;
     height: 50px;
     cursor: pointer;
 }
@@ -117,7 +117,7 @@ body{
 .main__table{
     overflow-y: auto;
     height: 15em;
-    width: 425px;
+    width: 550px;
     margin: auto;
 }
 
@@ -161,4 +161,10 @@ table, th, td{
     width: 100%;
     display: flex;
     justify-content: space-around;
+}
+
+.main__form div{
+	
+	margin-bottom: 20px;
+	
 }

@@ -31,6 +31,12 @@ public class DetalleAlmacenServiceImpl implements DetalleAlmacenService{
 		return detalleAlmacenRepository.filterByAlmacen(idAlmacen);
 	}
 
+	@Override
+	public List<DetalleAlmacen> filterByAlmacenProducto(Integer idAlmacen, Integer idProducto) throws Exception {
+		// TODO Auto-generated method stub
+		return detalleAlmacenRepository.filterByAlmacenProducto(idAlmacen, idProducto);
+	}
+
 	
 
 }

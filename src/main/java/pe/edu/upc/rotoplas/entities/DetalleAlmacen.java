@@ -7,6 +7,8 @@ import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,18 +29,13 @@ public class DetalleAlmacen {
 	@JoinColumn(name = "CAlmacen", nullable = false)
 	private Almacen almacen;
 	
+	@NotNull
+	@Min(1)
 	@Column(name = "StockProducto", columnDefinition = "NUMERIC(10)")
     private Integer StockProducto;
 
 	public DetalleAlmacen() {
 		super();
-	}
-
-	public DetalleAlmacen(Producto producto, Almacen almacen, Integer stockProducto) {
-		super();
-		this.producto = producto;
-		this.almacen = almacen;
-		StockProducto = stockProducto;
 	}
 
 	public Producto getProducto() {
@@ -64,6 +61,13 @@ public class DetalleAlmacen {
 	public void setStockProducto(Integer stockProducto) {
 		StockProducto = stockProducto;
 	}
-	
-	
+
+	public DetalleAlmacen(Producto producto, Almacen almacen, @NotNull @Min(1) Integer stockProducto) {
+		super();
+		this.producto = producto;
+		this.almacen = almacen;
+		StockProducto = stockProducto;
+	}
+
+
 }

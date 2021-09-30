@@ -22,16 +22,16 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
             </div>
             <div class="alert alert-danger" th:if="${#fields.hasErrors('NUsuario')}" th:errors= "*{NUsuario}">...</div>	
             <div class="formInput">
-                <label for="">Usuario: </label><input  class="controls" th:field ="*{NUsuario}"  type="text" name="NUsuario" id="NUsuario" placeholder="Ingrese su Usuario" required maxlength="30">
+                <label for="">Usuario: </label><input  class="controls" th:field ="*{NUsuario}"  type="text" name="NUsuario" id="NUsuario" placeholder="Ingrese su Usuario" maxlength="30">
             </div>
             			<div class="alert alert-danger" th:if="${#fields.hasErrors('Contrasena')}" th:errors= "*{Contrasena}"></div>
             <div class="formInput">
-                <label for="">Contraseña: </label><input class="controls"  th:field ="*{Contrasena}" type="Contrasena" name="Contrasena" id="Contrasena" placeholder="Ingrese su Contraseña" required maxlength="50">
+                <label for="">Contraseña: </label><input class="controls"  th:field ="*{Contrasena}" type="Contrasena" name="Contrasena" id="Contrasena" placeholder="Ingrese su Contraseña" maxlength="50">
             </div>
             		<div class="alert alert-danger" th:if="${#fields.hasErrors('TDireccionUsario')}" th:errors= "*{TDireccionUsario}"></div>
 				
             <div class="formInput">
-                <label for="">Dirección: </label><input class="controls"  th:field ="*{TDireccionUsario}" type="TDireccionUsario" name="TDireccionUsario" id="TDireccionUsario" placeholder="Ingrese su direccion" required maxlength="50" >
+                <label for="">Dirección: </label><input class="controls"  th:field ="*{TDireccionUsario}" type="TDireccionUsario" name="TDireccionUsario" id="TDireccionUsario" placeholder="Ingrese su direccion"  maxlength="50" >
             </div>
             <div class="alert alert-danger" th:if="${#fields.hasErrors('NumCelular')}" th:errors= "*{NumCelular}"></div>
 			

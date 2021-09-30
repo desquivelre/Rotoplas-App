@@ -38,7 +38,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
                         </div>
                     </div>
                </form>
-              
+               <a th:href="@{'/listarproductos/'+${almacen.CAlmacen}}" class="link-button"><button class="button-base filtrar">Resetear tabla</button></a>
            </div>
         
            <div class="main__table">

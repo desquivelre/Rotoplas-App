@@ -24,6 +24,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
         <div class="texto">Seleccione el almacen con el que desea trabajar</div>
         <div class="box">
             <select name="" id="" onchange="window.location.href=this.value">
+            	
                 <option th:each="almacenes:${almacenes}" th:value="@{'/seleccionAlmacen/'+${almacenes.CAlmacen}}" th:text="'Almacen '+${almacenes.distrito.NDistrito}">a</option>
             </select>
         </div>

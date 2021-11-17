@@ -26,7 +26,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
         	<input type="text" class="form-control" th:field="*{producto}" hidden=true>
         	
             <div class="formInput excusa">
-            	<label for="">Seleccione al alamacén: </label>
+            	<label for="" class="gaton">Seleccione al almacén: </label>
             	
 				<select name="" id="" th:field="*{almacen_destino}">
 				
@@ -42,8 +42,8 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 			 
 			   
 			
-                <label for="validationTextarea">Cantidad a transferir: </label>
-                <input class="form-control is-invalid" id="validationTextarea"  placeholder="Required example textarea" name= "cantidad"th:field="*{cantidad}"required  autofocus pattern="[0-9]+" title="El stock a transferir debe ser mayor o igual 0">
+                <label for="validationTextarea">Cantidad a transferir </label>
+                <input class="form-control is-invalid" id="validationTextarea"  placeholder="" name= "cantidad"th:field="*{cantidad}"required  autofocus pattern="[0-9]+" title="El stock a transferir debe ser mayor o igual 0">
 				 
 				 <div class="invalid-feedback">
       			Completa campo cantidad
@@ -53,12 +53,12 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
          
 		</div>
           
-            <a href="menuControlInventario.html"><button class="button-base" type="submit">Registrar</button></a>
+            <button class="button-base buttonga" type="submit">Registrar</button>
 	
         </form>
 
 
-</form>
+
 
     </div>
     

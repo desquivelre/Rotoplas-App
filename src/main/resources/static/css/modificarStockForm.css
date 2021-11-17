@@ -4,6 +4,7 @@
 
     font-family: 'Rubik', sans-serif;
 
+
 }
 
 
@@ -19,6 +20,10 @@ body{
     flex-direction: column;
     align-items: center;
     
+}
+
+.gaton{
+	padding-right: 30px;
 }
 
 .main{
@@ -113,7 +118,8 @@ body{
     width:  150px;
     height: 50px;
     cursor: pointer;
-  
+    
+ 
 }
 
 .button-base a{
@@ -125,6 +131,10 @@ body{
 
     background-color: mediumaquamarine;
     color: white;
+}
+
+.main__formRegistrarProducto{
+	text-align: center;
 }
 
 .main__formRegistrarProducto a{
@@ -146,3 +156,4 @@ body{
     font-size: 15px;
     text-align: center;
 }
+

@@ -1,4 +1,4 @@
- S<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr" xmlns:th="https://www.thymeleaf.org/"
 xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
@@ -53,6 +53,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
                 <label for="">Color: </label>
                 <div class="box">
                     <select name="" id="" th:field="*{color}" >
+              
                         <option th:each ="color : ${colores}"
                         			     th:value = "${color.ccolor}"
                         			     th:text = "${color.ncolores}">Cisterna</option>

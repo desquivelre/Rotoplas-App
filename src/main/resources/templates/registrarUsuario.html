@@ -17,12 +17,17 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
         <img src="/img/rotoplas-logo.png" alt="rotoplas-logo" class="formLogo">
         <form th:action="@{/auth/registro}" th:object="${usuario}" , method="post" class="formLogin">
             <div class="alert alert-danger" th:if="${#fields.hasErrors('DNI')}" th:errors= "*{DNI}">...</div>	
+              <div class="alert alert-danger" th:if="${errorMessage}" th:text= "${errorMessage}">...</div>	
+  
             <div class="formInput">
+            
                  <label for="">DNI: </label><input class="controls"  th:field ="*{DNI}" type="text" name="DNI" id="DNI" placeholder="Ingrese su dni" >
             </div>
             <div class="alert alert-danger" th:if="${#fields.hasErrors('NUsuario')}" th:errors= "*{NUsuario}">...</div>	
             <div class="formInput">
+            
                 <label for="">Usuario: </label><input  class="controls" th:field ="*{NUsuario}"  type="text" name="NUsuario" id="NUsuario" placeholder="Ingrese su Usuario" maxlength="30">
+           
             </div>
             			<div class="alert alert-danger" th:if="${#fields.hasErrors('Contrasena')}" th:errors= "*{Contrasena}"></div>
             <div class="formInput">

@@ -12,12 +12,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import pe.edu.upc.rotoplas.entities.Usuario;
 import pe.edu.upc.rotoplas.service.crud.RegisterService;
+import pe.edu.upc.rotoplas.service.crud.UsuarioService;
 
 @Controller
 public class RegisterController {
 
 	@Autowired
 	private RegisterService registerService;
+	private UsuarioService usuarioService;
 	
 	@GetMapping("/auth/login")
 	public String login(Model model) {
@@ -40,9 +42,20 @@ public class RegisterController {
 
         return "registrarUsuario";
     }else {
-        model.addAttribute("usuario",registerService.registrar(usuario));
+    	
+
+        try {
+			model.addAttribute("usuario",registerService.registrar(usuario));
+		} catch (Exception e) {
+	        model.addAttribute("errorMessage", e.getMessage());
+	        return "registrarUsuario";
+		}
         System.out.println("Creado Correctamente");
+        
     }
+    
+    
+    
     return "redirect:/index";
 }
 
